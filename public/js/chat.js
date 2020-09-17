@@ -11,24 +11,23 @@ const locationMessageTemplate=document.querySelector('#location-message-template
 const sidebarTemplate=document.querySelector('#sidebar-template').innerHTML
 const{Username,Room}=Qs.parse(location.search,{ignoreQueryPrefix: true})
 
-const autoscroll= () =>{
-    const $newMessage=$messages.lastElementChild
+// const autoscroll= () =>{
+//     const $newMessage=$messages.lastElementChild
+//     const newMessageStyles=getComputedStyle($newMessage)
+//     const newMessageMargin=parseInt(newMessageStyles.marginBottom)
+//     const newMessageHeight=$newMessage.offsetHeight + newMessageMargin
 
-    const newMessageStyles=getComputedStyle($newMessage)
-    const newMessageMargin=parseInt(newMessageStyles.marginBottom)
-    const newMessageHeight=$newMessage.offsetHeight + newMessageMargin
+//     const visibleHeight=$messages.offsetHeight
 
-    const visibleHeight=$messages.offsetHeight
+//     const containerHeight=$messages.scrollHeight
 
-    const containerHeight=$messages.scrollHeight
+//     const scrollOffset=$messages.scrollTop + visibleHeight
 
-    const scrollOffset=$messages.scrollTop + visibleHeight
+//     if(containerHeight - newMessageHeight >= scrollOffset){
+//         $messages.scrollTop=$messages.scrollHeight
 
-    if(containerHeight - newMessageHeight >= scrollOffset){
-        $messages.scrollTop=$messages.scrollHeight
-
-    }
-}
+//     }
+// }
 
 
 socket.on('message',(message) => {
@@ -39,7 +38,7 @@ socket.on('message',(message) => {
         createdAt:moment(message.createdAt).format('h:mm A')
     })
     $messages.insertAdjacentHTML('beforeend',html)
-    autoscroll()
+    // autoscroll()
 })
 
 socket.on('locationMessage',(message) =>{
@@ -50,7 +49,7 @@ socket.on('locationMessage',(message) =>{
         createdAt:moment(message.createdAt).format('h:mm A')
     })
     $messages.insertAdjacentHTML('beforeend',html)
-    autoscroll()
+    // autoscroll()
 })
 
 
